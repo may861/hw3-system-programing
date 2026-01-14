@@ -11,20 +11,19 @@ int main() {
     size_t len = 0;        // buffer size
 
     while (1) {
-        // 1. Print prompt
+        // printing prompt
         write(STDOUT_FILENO, PROMPT, sizeof(PROMPT) - 1);
 
-        // 2. Read input line
+        // read input line
         if (getline(&line, &len, stdin) == -1) {
-            // EOF (Ctrl+D)
             write(STDOUT_FILENO, "\n", 1);
             break;
         }
 
-        // Remove trailing newline
+        // remove trailing newline
         line[strcspn(line, "\n")] = '\0';
 
-        // 3. Internal command: exit
+        //  exit
         if (strcmp(line, "exit") == 0) {
             break;
         }
